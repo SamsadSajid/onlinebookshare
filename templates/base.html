@@ -7,10 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}Onlinebookshare{% endblock %}</title>
     <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="{% static 'css/onlinebookshare.css' %}?v=1" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="{% static 'js/onlinebookshare.js' %}"></script>
     {% block head %}{% endblock %}
   </head>
@@ -36,13 +36,35 @@
                     <span class="glyphicon glyphicon-bell"></span>
                   </a>
                 </li>
+                <li><a href="{% url 'feeds' %}">{% trans 'Feed' %}</a></li>
+                <li class="{% block books_active %}{% endblock %}">
+                    <a href="{% url 'mylibrary:index' %}">
+                        <span class="glyphicon glyphicon-book" aria-hidden="true">
+                        </span>&nbsp;
+                        Library
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'mylibrary:create_book' %}">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;
+                        Add Book
+                    </a>
+                </li>
               </ul>
-
               <ul class="nav navbar-nav navbar-right">
+                <li>
+                  <a href="{% url 'profile' user.username %}">{{ user.profile.get_screen_name }}
+                  </a>
+                </li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b></a>
                   <ul class="dropdown-menu">
+                    <li><a>Signed in as <br/>{{ user.username }}</a></li>
+                    <li class="divider"></li>
                     <li><a href="{% url 'settings' %}">{% trans 'Account Settings' %}</a></li>
+                    <li><a href="#">{% trans 'Help' %}</a></li>
+                    <li><a href="#">{% trans 'FAQ' %}</a></li>
+                    <li><a href="#">{% trans 'About' %}</a></li>
                     <li class="divider"></li>
                     <li><a href="{% url 'logout' %}">{% trans 'Log out' %}</a></li>
                   </ul>
@@ -58,6 +80,7 @@
           {% endblock main %}
         </div>
       </main>
+      <script src="{% static 'js/notifications.js' %}"></script>
 
     {% endblock body %}
     <script src="{% static 'js/ga.js' %}"></script>

@@ -9,13 +9,33 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import get_object_or_404, redirect, render
 
 from core.forms import ChangePasswordForm, ProfileForm
-#from bootcamp.feeds.models import Feed
-#from bootcamp.feeds.views import FEEDS_NUM_PAGES, feeds
+from feeds.models import Feed
+from feeds.views import FEEDS_NUM_PAGES, feeds
 from PIL import Image
 
 
 def home(request):
-    return render(request, 'core/cover.html')
+    if request.user.is_authenticated():
+        return feeds(request)
+    else:
+        return render(request, 'core/cover.html')
+
+
+@login_required
+def profile(request, username):
+    page_user = get_object_or_404(User, username=username)
+    all_feeds = Feed.get_feeds().filter(user=page_user)
+    paginator = Paginator(all_feeds, FEEDS_NUM_PAGES)
+    feeds = paginator.page(1)
+    from_feed = -1
+    if feeds:
+        from_feed = feeds[0].id
+    return render(request, 'core/profile.html', {
+        'page_user': page_user,
+        'feeds': feeds,
+        'from_feed': from_feed,
+        'page': 1
+        })
 
 
 @login_required

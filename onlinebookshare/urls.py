@@ -20,7 +20,7 @@ from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 
-#from bootcamp.activities import views as activities_views
+from activity import views as activities_views
 from authentication import views as bookshare_auth_views
 #from bootcamp.search import views as search_views
 from core import views as core_views
@@ -39,6 +39,16 @@ urlpatterns = [
     url(r'^settings/save_uploaded_picture/$', core_views.save_uploaded_picture,
         name='save_uploaded_picture'),
     url(r'^settings/password/$', core_views.password, name='password'),
+    url(r'^feeds/', include('feeds.urls')),
+    url(r'^notifications/$', activities_views.notifications,
+        name='notifications'),
+    url(r'^notifications/last/$', activities_views.last_notifications,
+        name='last_notifications'),
+    url(r'^notifications/check/$', activities_views.check_notifications,
+        name='check_notifications'),
+    url(r'^mylibrary/', include('mylibrary.urls')),
+    url(r'^(?P<username>[^/]+)/$', core_views.profile, name='profile'),
+    url(r'^i18n/', include('django.conf.urls.i18n', namespace='i18n')),
 ]
 
 if settings.DEBUG:

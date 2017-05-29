@@ -41,10 +41,14 @@ INSTALLED_APPS = [
     # http://whitenoise.evans.io/en/stable/django.html#using-whitenoise-in-development
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
 
     #app
     'authentication.apps.AuthenticationConfig',
     'core.apps.CoreConfig',
+    'feeds.apps.FeedsConfig',
+    'activity.apps.ActivityConfig',
+    'mylibrary.apps.MylibraryConfig',
 
 ]
 
@@ -142,6 +146,9 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+LOGIN_URL = '/'
+LOGIN_REDIRECT_URL = '/feeds/'
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = [

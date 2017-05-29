@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block head %}
+  <link href="{% static 'mylibrary/css/library.css' %}?v=1" rel="stylesheet">
+  <script src="{% static 'js/jquery.bullseye-1.0-min.js' %}"></script>
+  <script src="{% static 'mylibrary/js/library.js' %}?v=1"></script>
+{% endblock head %}
+
+{% block main %}
+<div class="books-container container-fluid">
+
+    <div class="row">
+
+        <!-- Left Photo -->
+        <div class="col-sm-4 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <a href="{% url 'mylibrary:detail' books.id %}">
+                        {% if books.logo %}
+                            <img src="{{ books.logo.url }}" class="img-responsive">
+                        {% else %}
+                            <h3>No image to display</h3>
+                        {% endif %}
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Details -->
+        <div class="col-sm-8 col-md-9">
+
+            <ul class="nav nav-pills" style="margin-bottom: 10px;">
+                <li role="presentation" class="active">
+                    <a href="{% url 'mylibrary:index'  %}">
+                        View All
+                    </a>
+                </li>
+                <li role="presentation"><a href="{% url 'mylibrary:create_book'  %}">Add New Book</a></li>
+            </ul>
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <h3>Book Details</h3>
+
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>Catagory</th>
+                            <th>Favorite</th>
+                            <th>Owner</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                             <tr>
+                                <td>{{ books.book_title }}</td>
+                                <td>{{ books.author }}</td>
+                                <td>{{ books.catagory }}</td>
+                                 <td> {{ books.isFavorite }} </td>
+                                <td>{{ books.owner }}</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock main %}

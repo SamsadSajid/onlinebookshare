@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block head %}
+  <link href="{% static 'mylibrary/css/library.css' %}?v=1" rel="stylesheet">
+  <script src="{% static 'js/jquery.bullseye-1.0-min.js' %}"></script>
+  <script src="{% static 'mylibrary/js/library.js' %}?v=1"></script>
+{% endblock head %}
+
+{% block main %}
+    <div class="albums-container container-fluid">
+
+    <!-- Books -->
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>{{ user.username }}'s Library</h3>
+        </div>
+        {% if books %}
+            {% for book in books %}
+                <div class="col-sm-4 col-lg-2">
+                    <div class="thumbnail">
+                        <a href="{% url 'mylibrary:detail' book.id %}">
+                            <img src="{{ book.logo.url }}" class="img-responsive">
+                        </a>
+                        <div class="caption">
+                            <h2>{{ book.book_title }}</h2>
+
+
+                            <!-- View Details -->
+                            <a href="{% url 'mylibrary:detail' book.id %}" class="btn btn-primary btn-sm"
+                               role="button">View Details</a>
+                            
+                            <!-- Delete Album -->
+                            <form action="{% url 'mylibrary:delete_book' book.id %}" method="post"
+                                  style="display: inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="book_id" value="{{ book.id }}" />
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </form>
+
+                            <!-- Favorite Book -->
+                            <a href="{% url 'mylibrary:favorite_book' book.id %}"
+                               class="btn btn-default btn-sm btn-favorite" role="button">
+                                <span class="glyphicon glyphicon-star 
+                                    {% if book.isFavorite %}
+                                        active
+                                    {% endif %}">
+                                </span>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+                {% cycle '' '' '' '' '' '<div class="clearfix visible-lg"></div>' %}
+            {% endfor %}
+        {% else %}
+            <div class="col-sm-12">
+                <br>
+                <a href="{% url 'mylibrary:create_book' %}">
+                    <button type="button" class="btn btn-success">
+                        <span class="glyphicon glyphicon-plus"></span>&nbsp; Add a Book
+                    </button>
+                </a>
+            </div>
+        {% endif %}
+    </div>
+
+
+    </div>
+{% endblock main %}

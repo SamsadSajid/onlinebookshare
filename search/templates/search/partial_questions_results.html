@@ -1,0 +1,23 @@
+{% load i18n %}
+{% load humanize %}
+
+<h2>{% trans 'Books' %}</h2>
+{% if results %}
+  <ul class="books-results">
+    {% for book in results %}
+      <li book-id="{{ book.pk }}">
+        <h5>
+          <img src="{{ book.user.profile.get_picture }}" class="result-user">
+          <a href="{% url 'profile' book.user.username %}">
+            {{ book.user.profile.get_screen_name }}
+          </a>
+          <small>added {{ book.book_title }}{{ book.create_date|naturaltime }}</small>
+        </h5>
+        <h4><a href="{% url 'mylibrary:detail'  book.pk %}">{{ book.title }}</a></h4>
+        <div class="book-description">{{ book.get_description_preview_as_markdown|safe }}</div>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <h4 class="no-result">{% trans 'No book found' %} :(</h4>
+{% endif %}

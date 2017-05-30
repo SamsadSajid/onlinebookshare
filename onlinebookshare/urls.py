@@ -22,7 +22,7 @@ from django.contrib.auth import views as auth_views
 
 from activity import views as activities_views
 from authentication import views as bookshare_auth_views
-#from bootcamp.search import views as search_views
+from search import views as search_views
 from core import views as core_views
 
 urlpatterns = [
@@ -47,6 +47,8 @@ urlpatterns = [
     url(r'^notifications/check/$', activities_views.check_notifications,
         name='check_notifications'),
     url(r'^mylibrary/', include('mylibrary.urls')),
+    url(r'^books/', include('mylibrary.urls')),
+    url(r'^search/$', search_views.search, name='search'),
     url(r'^(?P<username>[^/]+)/$', core_views.profile, name='profile'),
     url(r'^i18n/', include('django.conf.urls.i18n', namespace='i18n')),
 ]

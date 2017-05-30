@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'feeds.apps.FeedsConfig',
     'activity.apps.ActivityConfig',
     'mylibrary.apps.MylibraryConfig',
+    'search.apps.SearchConfig',
 
 ]
 

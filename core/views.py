@@ -50,6 +50,7 @@ def settings(request):
             user.email = form.cleaned_data.get('email')
             user.profile.url = form.cleaned_data.get('url')
             user.profile.location = form.cleaned_data.get('location')
+            user.profile.about = form.cleaned_data.get('about')
             user.save()
             messages.add_message(request,
                                  messages.SUCCESS,

@@ -7,6 +7,9 @@ from .models import BookList
 from .form import BookForm
 from django.contrib.auth.decorators import login_required
 from feeds.models import Feed
+from django.core.urlresolvers import reverse
+from django.utils.safestring import mark_safe
+from django.utils.html import escape
 from django.contrib.auth.models import User
 from django.forms.models import inlineformset_factory
 from django.core.exceptions import PermissionDenied
@@ -35,7 +38,8 @@ def create_book(request):
                 return render(request, 'mylibrary/create_book.html', context)
             books.save()
             user = request.user
-            welcome_post = '{0} has added a book.'.format(user.username, user.username)
+            welcome_post = '{0} has added <a href="{1}">{2}</a>.'.format(
+                escape(user.username), reverse('mylibrary:index'), books.book_title)
             feed = Feed(user=user, post=welcome_post)
             feed.save()
             return render(request, 'mylibrary/detail.html', {'books': books})

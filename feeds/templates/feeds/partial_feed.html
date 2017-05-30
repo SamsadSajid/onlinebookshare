@@ -19,7 +19,7 @@
           <small>{{ feed.date|naturaltime }}
           </small>
       </h3>
-      <p>{{ feed.linkfy_post|safe }}</p>
+      <p>{{ feed|safe }}</p>
       <div class="interaction">
         {% if user in feed.get_likers %}
           <a href="#" class="like unlike">

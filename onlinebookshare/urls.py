@@ -40,6 +40,7 @@ urlpatterns = [
         name='save_uploaded_picture'),
     url(r'^settings/password/$', core_views.password, name='password'),
     url(r'^feeds/', include('feeds.urls')),
+    url(r'^messages/', include('messenger.urls')),
     url(r'^notifications/$', activities_views.notifications,
         name='notifications'),
     url(r'^notifications/last/$', activities_views.last_notifications,

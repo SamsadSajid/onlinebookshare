@@ -65,6 +65,15 @@
               {% endif %}
               <ul class="nav navbar-nav navbar-right">
                 <li>
+                    <a href="{% url 'inbox' %}">
+                        <span class="glyphicon glyphicon-envelope"></span>
+                        <span class="badge pull-right" id="unread-count">
+                        0
+                        </span>
+                    Inbox
+                    </a>
+                </li>
+                <li>
                   <a href="{% url 'profile' user.username %}">{{ user.profile.get_screen_name }}
                   </a>
                 </li>
@@ -92,6 +101,7 @@
           {% endblock main %}
         </div>
       </main>
+      <script src="{% static 'js/check_messages.js' %}"></script>
       <script src="{% static 'js/notifications.js' %}"></script>
 
     {% endblock body %}

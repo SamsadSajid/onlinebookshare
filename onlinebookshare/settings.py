@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'activity.apps.ActivityConfig',
     'mylibrary.apps.MylibraryConfig',
     'search.apps.SearchConfig',
-
+    'messenger.apps.MessengerConfig',
 ]
 
 MIDDLEWARE = [

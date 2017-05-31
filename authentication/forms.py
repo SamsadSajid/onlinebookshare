@@ -57,7 +57,8 @@ class SignUpForm(forms.ModelForm):
     email = forms.CharField(
         widget=forms.EmailInput(attrs={'class': 'form-control'}),
         required=True,
-        max_length=75)
+        max_length=75,
+        help_text='Required! Please provide a valid email address.')
 
     class Meta:
         model = User

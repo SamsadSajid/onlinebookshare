@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.signals import post_save
 from django.utils.encoding import python_2_unicode_compatible
+from django.dispatch import receiver
 
 from activity.models import Notification
 
@@ -18,6 +19,7 @@ class Profile(models.Model):
     url = models.CharField(max_length=50, null=True, blank=True)
     job_title = models.CharField(max_length=50, null=True, blank=True)
     about = models.CharField(max_length=250, null=True, blank=True)
+    email_confirmed = models.BooleanField(default=False)
 
     class Meta:
         db_table = 'auth_profile'
@@ -85,13 +87,20 @@ class Profile(models.Model):
                          to_user=User(id=user), feed=feed).save()
 
 
-def create_user_profile(sender, instance, created, **kwargs):
+# def create_user_profile(sender, instance, created, **kwargs):
+#     if created:
+#         Profile.objects.create(user=instance)
+#
+#
+# def save_user_profile(sender, instance, **kwargs):
+#     instance.profile.save()
+#
+# # post_save.connect(create_user_profile, sender=User)
+# # post_save.connect(save_user_profile, sender=User)
+
+
+@receiver(post_save, sender=User)
+def update_user_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
-
-
-def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
-
-post_save.connect(create_user_profile, sender=User)
-post_save.connect(save_user_profile, sender=User)

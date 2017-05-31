@@ -159,3 +159,8 @@ STATICFILES_DIRS = [
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_HOST_USER = '7dd64bdefbbb13'
+EMAIL_HOST_PASSWORD = '744d81b2cfbd9e'
+EMAIL_PORT = '2525'

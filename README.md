@@ -1,52 +1,22 @@
-# Heroku Django Starter Template
+Onlinebookshare is a social site where user can add a library of books. In the library user can add information about books. It has a Newsfeed section where user can view who has joined the network and and who has added a book and also the name of the book. 
 
-An utterly fantastic project starter template for Django 1.10.
-
-## Features
-
-- Production-ready configuration for Static Files, Database Settings, Gunicorn, etc.
-- Enhancements to Django's static file serving functionality via WhiteNoise.
-- Latest Python 3.6 runtime environment. 
-
-## How to Use
-
-To use this project, follow these steps:
-
-1. Create your working environment.
-2. Install Django (`$ pip install django`)
-3. Create a new project using this template
-
-## Creating Your Project
-
-Using this template to create a new Django app is easy::
-
-    $ django-admin.py startproject --template=https://github.com/heroku/heroku-django-template/archive/master.zip --name=Procfile helloworld
-
-(If this doesn't work on windows, replace `django-admin.py` with `django-admin`)
-
-You can replace ``helloworld`` with your desired project name.
-
-## Deployment to Heroku
-
-    $ git init
-    $ git add -A
-    $ git commit -m "Initial commit"
-
-    $ heroku create
-    $ git push heroku master
-
-    $ heroku run python manage.py migrate
-
-See also, a [ready-made application](https://github.com/heroku/python-getting-started), ready to deploy.
-
-## Using Python 2.7?
-
-Just update `runtime.txt` to `python-2.7.13` (no trailing spaces or newlines!).
+Here's the newsfeed section:
+![pro1](https://cloud.githubusercontent.com/assets/19304394/26665477/bc783a64-46bb-11e7-85a7-266396d93bbe.png)
+You can give like and make a comment.
 
 
+You can give a post or status:
+![pro2](https://cloud.githubusercontent.com/assets/19304394/26665546/48eace80-46bc-11e7-9e56-f95f2caf89f0.png)
 
-## Further Reading
+You can send message:
+![pro3](https://cloud.githubusercontent.com/assets/19304394/26665658/10eee254-46bd-11e7-9ccb-6f3baff128d8.png)
 
-- [Gunicorn](https://warehouse.python.org/project/gunicorn/)
-- [WhiteNoise](https://warehouse.python.org/project/whitenoise/)
-- [dj-database-url](https://warehouse.python.org/project/dj-database-url/)
+You can add a book info in your library:
+![pro4](https://cloud.githubusercontent.com/assets/19304394/26665686/3962103a-46bd-11e7-96f1-a2784c8b1bad.png)
+
+You can change your account info:
+![pro5](https://cloud.githubusercontent.com/assets/19304394/26665736/8063b43e-46bd-11e7-9a26-05e9bdf16273.png)
+![pro6](https://cloud.githubusercontent.com/assets/19304394/26665734/805d8c26-46bd-11e7-8a06-afeea1c9e74a.png)
+![pro7](https://cloud.githubusercontent.com/assets/19304394/26665735/805e255a-46bd-11e7-8af7-17a8e3b75a56.png)
+
+And also while registering, you'll have to validate your email as a confirmation mail'll be send to your email.

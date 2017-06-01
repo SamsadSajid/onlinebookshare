@@ -160,7 +160,10 @@ STATICFILES_DIRS = [
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-EMAIL_HOST = 'smtp.mailtrap.io'
-EMAIL_HOST_USER = '7dd64bdefbbb13'
-EMAIL_HOST_PASSWORD = '744d81b2cfbd9e'
-EMAIL_PORT = '2525'
+# EMAIL_HOST = 'smtp.mailtrap.io'
+# EMAIL_HOST_USER = '7dd64bdefbbb13'
+# EMAIL_HOST_PASSWORD = '744d81b2cfbd9e'
+# EMAIL_PORT = '2525'
+
+EMAIL_BACKEND = "sgbackend.SendGridBackend"
+SENDGRID_API_KEY = "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"

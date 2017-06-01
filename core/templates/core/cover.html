@@ -37,6 +37,9 @@
         </div>
         <div class="form-group">
           <button type="submit" class="btn btn-primary btn-lg">{% trans 'Log in' %}</button>
+          <a href="{% url 'password_reset' %}" class="btn btn-link">{% trans 'Forgot Password?' %}</a>
+        </div>
+        <div>
           <a href="{% url 'signup' %}" class="btn btn-link">{% trans 'Sign up for Onlinebookshare' %}</a>
         </div>
       </form>

@@ -23,10 +23,10 @@ PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "+pv9+6t8l1@+jh&lpx_s0+0$8c0@syq1&l194)2)rmkeo$!-ta"
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', cast=bool)
 
 # Application definition
 
@@ -97,11 +97,11 @@ DATABASES = {
 
 'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'onlinebook',
-        'USER': 'root',
-        'PASSWORD': '1H2He3Li4Be5B?',
-        'HOST': '127.0.0.1',
-        'PORT': '3306'
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT', cast=int)
     }
 }
 
@@ -137,7 +137,7 @@ DATABASES['default'].update(db_from_env)
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allow all host headers
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
@@ -165,5 +165,5 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # EMAIL_HOST_PASSWORD = '744d81b2cfbd9e'
 # EMAIL_PORT = '2525'
 
-EMAIL_BACKEND = "sgbackend.SendGridBackend"
-SENDGRID_API_KEY = "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"
+EMAIL_BACKEND = config('EMAIL_BACKEND')
+SENDGRID_API_KEY = config('SENDGRID_API_KEY')

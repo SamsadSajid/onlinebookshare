@@ -20,3 +20,5 @@ You can change your account info:
 ![pro7](https://cloud.githubusercontent.com/assets/19304394/26665735/805e255a-46bd-11e7-8af7-17a8e3b75a56.png)
 
 And also while registering, you'll have to validate your email as a confirmation mail'll be send to your email.
+
+The template and scaffolding of the project was developed motivated on [Vitor Freitas's](https://github.com/vitorfs) [Bootcamp](https://github.com/vitorfs/bootcamp) project.
